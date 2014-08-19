@@ -28,6 +28,8 @@ public class Menu extends HttpServlet {
 		PreparedStatement prepStmt;
 		String query = "SELECT user, pass FROM teachers WHERE user = '?' AND pass = '?'";
 		prepStmt = conn.prepareStatement(query);
+		prepStmt.setString(1,user);
+		prepStmt.setString(2,pass);	
 		ResultSet rs = prepStmt.executeQuery();
 		if (rs == null){
 			correct = false;
@@ -40,15 +42,18 @@ public class Menu extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Connection conn = null;
+		@SuppressWarnings("unused")
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		try {
 			if(Check(conn,username,password)){
-				
+				//send to success page
+			}else{
+				//send to error page
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 			
