@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,9 +49,12 @@ public class Menu extends HttpServlet {
 		String password = request.getParameter("password");
 		try {
 			if(Check(conn,username,password)){
-				//send to success page
+				RequestDispatcher rd = request.getRequestDispatcher("MenuSuccess.jsp");
+				rd.forward(request,response);
 			}else{
 				//send to error page
+				RequestDispatcher rd = request.getRequestDispatcher("MenuFail.jsp");	
+				rd.forward(request,response);	
 			}
 		} catch (SQLException e) {
 		
