@@ -14,7 +14,7 @@
     <description></description>
     <display-name>Menu</display-name>
     <servlet-name>Menu</servlet-name>
-    <servlet-class>Menu</servlet-class>
+    <servlet-class>client.Menu</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Menu</servlet-name>
