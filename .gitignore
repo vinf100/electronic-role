@@ -1,10 +1,22 @@
 .gradle
-Cookies
-My Documents
-Favorites
-Desktop
-Start Menu
-UserData
-WINDOWS
+Cookies/*
+My Documents/*
+Favorites/*
+Desktop/*
+Start Menu/*
+UserData/*
+WINDOWS/*
 new.txt
 .metadata
+_viminfo
+Application Data
+Local Settings
+NTUSER.DAT
+NetHood
+PrintHood
+Recent
+SendTo
+Templates
+UserData
+ntuser.dat.LOG
+ntuser.ini
