@@ -20,4 +20,14 @@
     <servlet-name>Menu</servlet-name>
     <url-pattern>/Menu</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProcessRoleRequest</display-name>
+    <servlet-name>ProcessRoleRequest</servlet-name>
+    <servlet-class>client.ProcessRoleRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProcessRoleRequest</servlet-name>
+    <url-pattern>/ProcessRoleRequest</url-pattern>
+  </servlet-mapping>
 </web-app>
