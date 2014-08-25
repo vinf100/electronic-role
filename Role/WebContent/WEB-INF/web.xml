@@ -30,4 +30,14 @@
     <servlet-name>ProcessRoleRequest</servlet-name>
     <url-pattern>/ProcessRoleRequest</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>TakeRole</display-name>
+    <servlet-name>TakeRole</servlet-name>
+    <servlet-class>client.TakeRole</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TakeRole</servlet-name>
+    <url-pattern>/TakeRole</url-pattern>
+  </servlet-mapping>
 </web-app>
