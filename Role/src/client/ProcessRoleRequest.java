@@ -1,10 +1,13 @@
 package client;
 
 import java.io.IOException;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class ProcessRoleRequest extends HttpServlet {
@@ -14,7 +17,12 @@ public class ProcessRoleRequest extends HttpServlet {
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		
+		Enumeration<?> names = request.getParameterNames();
+		String parameterName = (String) names.nextElement();
+		
 		
 	}
 
