@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 public class TakeRole extends HttpServlet {
 	public void writeValues(String url, HttpSession session, ResultSet rs,
-			PrintWriter out, PreparedStatement prepStmt) throws SQLException {
+			PrintWriter out, PreparedStatement prepStmt) throws SQLException, InstantiationException, IllegalAccessException {
 		Connection conn = null;
 		Menu.setUpConnection(conn, url);
 		try {
@@ -72,6 +72,17 @@ public class TakeRole extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html> <head> <title> Take Role </title> </head> <body>"
 				+ "<form action = '/Role/ProcessRoleRequest' method = 'POST'>");
-		writeValues(url, session, rs, out, prepStmt);
+		try {
+			writeValues(url, session, rs, out, prepStmt);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
