@@ -3,9 +3,9 @@ package client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,25 +16,35 @@ import javax.servlet.http.HttpSession;
 
 public class TakeRole extends HttpServlet {
 	public void writeValues(String url, HttpSession session, ResultSet rs,
-			PrintWriter out, PreparedStatement prepStmt) throws SQLException, InstantiationException, IllegalAccessException {
+			PrintWriter out, Statement stmt) throws SQLException,
+			InstantiationException, IllegalAccessException {
 		Connection conn = null;
-		Menu.setUpConnection(conn, url);
+		conn = Menu.setUpConnection(conn, url);
+		String query = "SELECT * FROM roleproject."
+				+ (String) session.getAttribute("classname") + ";";
+		stmt = conn.prepareStatement(query);
+		rs = stmt.executeQuery(query);
+
 		try {
-			conn = Menu.setUpConnection(conn, url);
-			String query = "SELECT * FROM ?";
-			prepStmt = conn.prepareStatement(query);
-			prepStmt.setString(1, (String) session.getAttribute("ClassName"));
-			rs = prepStmt.executeQuery();
 			Integer personNum = 1;
 			String personNumString;
+			out.println("<table border='1' align=decimal>");
 			while (rs.next()) {
+				System.out.println(personNum);
 				personNumString = Integer.toString(personNum);
-				out.println("<table><tr><td>" + rs.getString("firstname")
-						+ "</td><td>" + rs.getString("lastname")
-						+ "</td><td>Present: <input type = 'checkbox' name = 'person "
-						+ personNumString + "'></tr></table>");
+				
+				out.println("<tr ><td>"
+						+ rs.getString("firstname") + " " + rs.getString("lastname") 
+						+ "</td>"
+						+ "</td><td>Present: <input type = 'radio' name = 'person"
+						+ personNumString + "' value = 'Present'></td><td>Late: <input type = 'radio' name = 'person"
+						+ personNumString + "' value = 'Late'></td><td>Sick: <input type = 'radio' name = 'person"
+						+ personNumString + "' value = 'Sick'></td><td>Other: <input type = 'radio' name = 'person"
+						+ personNumString + "' value = 'Other'></td></tr>");
 				personNum++;
 			}
+			out.println("</table>");
+			out.println("<input type = 'submit'>");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -49,7 +59,7 @@ public class TakeRole extends HttpServlet {
 					e.printStackTrace();
 				} finally {
 					try {
-						prepStmt.close();
+						stmt.close();
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
@@ -61,19 +71,19 @@ public class TakeRole extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ResultSet rs = null;
-		String url = null;
-		PreparedStatement prepStmt = null;
+		String url = "jdbc:mysql://localhost:3306";
+		Statement stmt = null;
 		HttpSession session = request.getSession(false);
-		if(session == null){
-			session.invalidate();
+		if (session == null) {
 			RequestDispatcher rd = request.getRequestDispatcher("login.html");
 			rd.forward(request, response);
 		}
 		PrintWriter out = response.getWriter();
 		out.println("<html> <head> <title> Take Role </title> </head> <body>"
-				+ "<form action = '/Role/ProcessRoleRequest' method = 'POST'>");
+				+ "<form action = '/Role/ProcessRoleRequest' method = 'GET'>");
 		try {
-			writeValues(url, session, rs, out, prepStmt);
+			writeValues(url, session, rs, out, stmt);
+			out.println("<form></body></html>");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

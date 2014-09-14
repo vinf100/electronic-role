@@ -64,8 +64,19 @@ public class Menu extends HttpServlet {
 		return correct;
 	}
 
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	throws ServletException, IOException{
+		HttpSession session = request.getSession(false);
+		if(session != null){
+			doPost(request,response);
+		}else{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/Role/login.html");
+			dispatcher.forward(request,response);
+		}
+	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println(ProcessRoleRequest.getFormattedStringDate());
 		String url = "jdbc:mysql://localhost:3306";
 		HttpSession session = request.getSession(true);
 		try {
