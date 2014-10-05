@@ -1,0 +1,32 @@
+html{
+	background-color:#EEEEEE;
+	text-align:center;
+}
+body {
+	padding-bottom:30px;
+	position: relative;
+}
+h1{
+	position:relative;
+	padding-left:25px;
+}
+form {
+	background-color: #AAFFAA;
+	padding-left:15px;
+	padding-top:15px;
+	padding-bottom:15px;
+	position:relative;
+	
+}
+input{
+	background-color:#EEEEEE;
+}
+.inputDiv{
+	position:relative;
+	left:-30px;
+	padding-right:20px;
+}
+#password{
+	position:relative;
+	left:1px;
+}

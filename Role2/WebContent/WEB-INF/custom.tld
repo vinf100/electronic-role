@@ -1,0 +1,15 @@
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>2.0</jsp-version>
+  <short-name>TLD</short-name>
+  <tag>
+    <name>TopNav</name>
+    <tag-class>helperClasses.DrawTopNavTag</tag-class>
+    <body-content>empty</body-content>
+  </tag>
+  <tag>
+  <name>TopNavAdmin</name>
+  <tag-class>helperClasses.DrawTopNavTagAdmin</tag-class>
+  <body-content>empty</body-content>
+  </tag>
+</taglib>
